@@ -29,5 +29,5 @@ echo -e ${MANGENTA} To leave the server/machine unse the command "logout"
 
 sleep 5        #timeout de 5 segundos
 clear
-echo -e ${GREEN} Creating ssh tuneling...
+echo -e ${GREEN} Creating ssh tuneling... ${NC}
 bash cfg.sh      #run other file
