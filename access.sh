@@ -27,10 +27,10 @@ echo -e ${MANGENTA} This tool is used to remotly acess my personal computer and 
 echo -e ${MANGENTA} DONT forget to configure first the values in cfg.txt!
 echo -e ${MANGENTA} To leave the server/machine unse the command "logout"
 sleep 2        #timeout de 5 segundos
-clear
-
 
 #menu
+menu() {
+clear
 echo Choose one option:
 echo -e "${CIAN}____________________________________"
 echo -e "${CIAN}|  [1]	|${GREEN} Create a SSH connection ${CIAN} |${NC}"
@@ -38,14 +38,14 @@ echo -e "${CIAN}|  [2]	|${GREEN} Add a new connection ${CIAN}    |${NC}"
 echo -e "${CIAN}|  [3]	|${GREEN} Remove one device ${CIAN}	   |${NC}"
 echo -e "${CIAN}|  [4]	|${GREEN} Exit ${CIAN}			   |${NC}"
 echo -e "${CIAN}|__________________________________|"
+echo Option: && read option
+
+}
+menu #call function menu
 
 
-echo Option: 
-read option
 
-
-
-#List devices stored in "options" file
+#List devices stored in "options" dir
 select_device() {
 	cd options
 	base=0
@@ -63,12 +63,11 @@ select_device() {
 	#select the option choosed
 	local base_2=0
 	for file in $commands; do 
-		if [[ $base_2 -eq $device ]]; then
-			base_2=$(($base_2+1))
-			selected =  $file
-			echo Stoped!
+		if [[ $base_2 == $device ]]; then
+			selected = $file
 			break
 		fi
+		base_2=$(($base_2+1))
 	done
 }
 
@@ -76,19 +75,34 @@ select_device() {
 
 #connect to a stored device
 conect() {
-	echo grub-mklayout	
+	source $file.sh
+	echo Importing "$file" data ...
+	sleep 1
+	echo Connecting ...
+	sleep 1
+	ssh $username@$ip
 }
-
-
-
-
-
 
 #add a new device
 
+new_device() {
+	cd options
+	echo Choose your file name:
+	read file_name
+	echo Enter the device Username:
+	read username
+	echo Enter the device IP:
+	read IP
+	echo Enter the device passowrd:
+	read password
 
+	echo Creating the file...
+	touch $file_name
+	echo -e Username=$username >> $file_name
+	echo -e IP=$IP >> $file_name
+	echo -e Password=$password >> $file_name
 
-
+}
 
 
 
@@ -108,28 +122,34 @@ conect() {
 if [ $option -eq 1 ]; then
 	select_device
 	echo $selected
-	echo $file
-	#echo -e "${YELLOW}Select one device" && read selected
-	#echo -e "${GREEN} Creating ssh tuneling... ${NC}"
+	connect
+	sleep 3
+	menu
 
 
-elif [[ $option=2 ]]; then
-	echo Not
+elif [[ $option -eq 2 ]]; then
+	new_device
+	sleep 2
+	menu
 
-elif [[ $option==3 ]]; then
+elif [ $option -eq 3 ]; then
 	select_device
-	
+	echo File: $file
+	echo Are you sure you want to delet "$file"? [y/n]
+	read confirmation
+	if [ $confirmation == y ];then
+		rm $file
+	fi
+	menu
 
 elif [ $options=4 ]; then
 	echo -e "${RED} Closing the app..."
 	sleep 3
 	exit
-elif [ $options=3 ]; then
-	echo ""
-
 else
 	echo "${RED} Unknown command"
-
+	sleep 2
+	menu
 fi
 
 
