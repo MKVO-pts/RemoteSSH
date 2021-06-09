@@ -1,0 +1,14 @@
+Plano:
+
+- instalacao e preparacao das coisas(auto delet depois de usado)
+- para adicionar uma nova ligação
+
+-criar a ligacao
+
+-remover(final)
+
+
+
+
+
+
