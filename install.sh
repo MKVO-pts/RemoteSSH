@@ -7,7 +7,7 @@ apt-get install git                                      #install git
 apt-get install sshpass                                  #Non-Interactive SSH Login
 chmod a+x access.sh                                      #change the permissions
 chmod a+x cfg.sh                                         #change the permissions
-
+mkdir options
 echo Done!
 
 
