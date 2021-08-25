@@ -34,8 +34,8 @@ menu() {
 	#normal menu options
 	echo Choose one option:
 	echo -e "${CIAN}____________________________________"
-	echo -e "${CIAN}|  [1]	|${GREEN} Create SSH connection ${CIAN} |${NC}"
-	echo -e "${CIAN}|  [2]	|${GREEN} Add a new device ${CIAN}    |${NC}"
+	echo -e "${CIAN}|  [1]	|${GREEN} Create SSH connection ${CIAN}   |${NC}"
+	echo -e "${CIAN}|  [2]	|${GREEN} Add a new device ${CIAN}        |${NC}"
 	echo -e "${CIAN}|  [3]	|${GREEN} Remove one device ${CIAN}	   |${NC}"
 	echo -e "${CIAN}|  [4]	|${GREEN} Exit ${CIAN}			   |${NC}"
 	echo -e "${CIAN}|__________________________________|"
@@ -64,7 +64,7 @@ menu() {
 		read confirmation
 		if [ $confirmation == "y" ]; then
 			cd options
-			rm -i $file
+			rm -f $file
 			cd ..
 			echo -e "${RED}File removed!${NC}"
 		fi
@@ -154,6 +154,5 @@ new_device() {
 }
 
 
-#Keep the infinit loop
-#this start the tool
+
 menu #call function menu
