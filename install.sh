@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 echo Installing necessary packages...
 # install necessary packages
 apt-get install openssh-server                           #basic for ssh connections
