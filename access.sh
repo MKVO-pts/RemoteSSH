@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#var whit colors 
+#var for colors 
 RED='\033[0;31m'
 MANGENTA='\e[95m'
 GREEN='\e[92m'
@@ -27,10 +27,10 @@ menu() {
 	echo -e " ${CIAN}\_______________________________/${NC}"
 	echo -e " "
  
-	echo -e "${YELLOW} Access Tool! "
+	echo -e "${YELLOW} Your Username: $(whoami)   Your IP: $(hostname -I)"
 	echo -e "${MANGENTA} This tool is used to remotly acess different computers using ssh. "
 	echo -e "${MANGENTA} To leave the server/machine unse the command ${YELLOW}\"logout\" "
-
+		
 	#normal menu options
 	echo Choose one option:
 	echo -e "${CIAN}____________________________________"
@@ -125,7 +125,7 @@ connect() {
 	sleep 1
 	echo Connecting ...
 	sleep 1
-	ssh $username@$ip           #create the connections
+	ssh -p 22 $Username@$IP           #create the connections
 	cd ..
 }
 
@@ -156,3 +156,4 @@ new_device() {
 
 
 menu #call function menu
+#end
