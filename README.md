@@ -8,6 +8,7 @@
 ## General Info
 This project let you connect to a remote machine using SSH(Secure Shell). 
 It work whit Linux and Termux!
+<img width="642" height="489" alt="Screenshot from 2025-12-27 20-44-57" src="https://github.com/user-attachments/assets/1b9ebd17-6304-45ce-b6ba-3b3e794e24f3" />
 
 ## Setup
 first use git clone download the project, then run the install.sh
